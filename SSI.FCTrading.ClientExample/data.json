@@ -1,0 +1,69 @@
+﻿{
+  "NewOrderRequest": {
+    "account": "1407101",
+    "buySell": "B",
+    "channelID": "TA",
+    "instrumentID": "SSI",
+    "market": "VN",
+    "orderType": "LO",
+    "price": 50000,
+    "quantity": 20,
+    "stopOrder": "false",
+    "modifiable": "true",
+    "code": "123456789"
+  },
+  "CancelOrderRequest": {
+    "Account": "",
+    "MarketID": "",
+    "InstrumentID": "",
+    "BuySell": "",
+    "RequestID": "",
+    "Code": ""
+  },
+  "ModifyOrderRequest": {
+    "OrderID": "",
+    "Price": 0,
+    "Quantity ": 0,
+    "Account ": "",
+    "InstrumentID": "",
+    "MarketID ": "",
+    "BuySell": "",
+    "RequestID ": "",
+    "OrderType  ": "",
+    "Code": ""
+  },
+  "CashAccountBalanceRequest": {
+    "account": ""
+  },
+  "DerivativeAccountRequest": {
+    "account": "1407101"
+  },
+  "PpmmrAccountRequest": {
+    "Account": ""
+  },
+  "StockPositionRequest": {
+    "Account": ""
+  },
+
+  "DerivativePositionRequest": {
+    "Account": "",
+    "QuerySummary": "true"
+  },
+
+  "MaxBuyQuantityAccountRequest": {
+    "Account": "",
+    "InstrumentID": "",
+    "Price": 0
+  },
+  "MaxSellQuantityRequest": {
+    "Account": "",
+    "InstrumentID": "",
+    "Price": 0
+  },
+  "OrderHistoryAccountRequest": {
+    "account": "",
+    "startDate": "16/08/2022",
+    "endDate": "18/08/2022"
+  }
+
+}
