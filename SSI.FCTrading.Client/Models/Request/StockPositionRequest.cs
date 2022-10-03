@@ -8,6 +8,6 @@ namespace SSI.FCTrading.Client.Models.Request
 {
     public class StockPositionRequest
     {
-        public string Account { get; set; }
+        public string account { get; set; }
     }
 }

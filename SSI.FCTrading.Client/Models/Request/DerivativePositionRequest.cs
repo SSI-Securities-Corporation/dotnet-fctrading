@@ -8,8 +8,8 @@ namespace SSI.FCTrading.Client.Models.Request
 {
     public class DerivativePositionRequest
     {
-        public string Account { get; set; }
-        public bool QuerySummary { get; set; }
+        public string account { get; set; }
+        public bool querySummary { get; set; }
         
     }
 }

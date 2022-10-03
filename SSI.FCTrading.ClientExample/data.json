@@ -1,67 +1,75 @@
 ﻿{
   "NewOrderRequest": {
-    "account": "1407101",
-    "buySell": "B",
-    "channelID": "TA",
-    "instrumentID": "SSI",
-    "market": "VN",
-    "orderType": "LO",
-    "price": 50000,
-    "quantity": 20,
+    "account": "1",
+    "buySell": "2",
+    "channelID": "3",
+    "instrumentID": "4",
+    "market": "5",
+    "orderType": "6",
+    "price": 7,
+    "quantity": 8,
     "stopOrder": "false",
     "modifiable": "true",
-    "code": "123456789"
+    "code": "9",
+    "requestID": 10,
+    "stopPrice": 11,
+    "stopType": "12",
+    "stopStep": 13,
+    "lossStep": 14,
+    "profitStep": 15
   },
   "CancelOrderRequest": {
-    "Account": "",
-    "MarketID": "",
-    "InstrumentID": "",
-    "BuySell": "",
-    "RequestID": "",
-    "Code": ""
+    "orderID": "string",
+    "account": "1",
+    "marketID": "2",
+    "instrumentID": "3",
+    "buySell": "4",
+    "requestID": "5",
+    "code": "6"
   },
+
   "ModifyOrderRequest": {
-    "OrderID": "",
-    "Price": 0,
-    "Quantity ": 0,
-    "Account ": "",
-    "InstrumentID": "",
-    "MarketID ": "",
-    "BuySell": "",
-    "RequestID ": "",
-    "OrderType  ": "",
-    "Code": ""
+    "orderID": "1",
+    "price": 2,
+    "quantity": 3,
+    "account": "4",
+    "instrumentID": "5",
+    "marketID": "6",
+    "buySell": "7",
+    "requestID": "8",
+    "orderType": "9",
+    "code": "10"
   },
   "CashAccountBalanceRequest": {
-    "account": ""
+    "account": "1"
   },
   "DerivativeAccountRequest": {
     "account": "1407101"
   },
   "PpmmrAccountRequest": {
-    "Account": ""
+    "account": "1"
   },
   "StockPositionRequest": {
-    "Account": ""
+    "account": "1"
   },
 
   "DerivativePositionRequest": {
-    "Account": "",
-    "QuerySummary": "true"
+    "account": "1",
+    "querySummary": "true"
   },
 
   "MaxBuyQuantityAccountRequest": {
-    "Account": "",
-    "InstrumentID": "",
-    "Price": 0
+    "account": "1",
+    "instrumentID": "2",
+    "price": 3
   },
   "MaxSellQuantityRequest": {
-    "Account": "",
-    "InstrumentID": "",
-    "Price": 0
+    "account": "1",
+    "instrumentID": "2",
+    "price": 3
   },
   "OrderHistoryAccountRequest": {
-    "account": "",
+    "account": "1",
     "startDate": "16/08/2022",
     "endDate": "18/08/2022"
   }

@@ -32,41 +32,60 @@ namespace SSI.FCTrading.Client
         }
         private TResponse MakePostRequest<TRequest, TResponse>(string path, TRequest request)
         {
-            var data = JsonConvert.SerializeObject(request);
-            var sign = _authenProvider.Sign(data);
-            var postJsonItem = new StringContent(data, Encoding.UTF8, "application/json");
-
-            var httpRq = new HttpRequestMessage
+            try
             {
-                RequestUri = new Uri(new Uri(_url), path),
-                Method = HttpMethod.Post,
-                Headers = {
+                var data = JsonConvert.SerializeObject(request);
+                var sign = _authenProvider.Sign(data);
+                var postJsonItem = new StringContent(data, Encoding.UTF8, "application/json");
+
+                var httpRq = new HttpRequestMessage
+                {
+                    RequestUri = new Uri(new Uri(_url), path),
+                    Method = HttpMethod.Post,
+                    Headers = {
                     { HttpRequestHeader.Authorization.ToString(), "Bearer " + _authenProvider.GetAccessToken().GetAwaiter().GetResult() },
                     { HttpRequestHeader.ContentType.ToString(), "application/json" },//use this content type if you want to send more than one content type
                     {"X-Signature", sign }
                 },
-                Content = postJsonItem
-            };
-            var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
-            httpRs.EnsureSuccessStatusCode();
-            var result = JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-            return result;
+                    Content = postJsonItem
+                };
+                var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
+                httpRs.EnsureSuccessStatusCode();
+
+                var result = JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, ex.Message);
+                return default(TResponse);
+            }
+          
         }
         private TResponse MakeGetRequest<TRequest, TResponse>(string path, TRequest request)
         {
-            var queryString = request.ToQueryString();
-            var uri = path + "?" + queryString;
-            var httpRq = new HttpRequestMessage
+            try
             {
-                RequestUri = new Uri(new Uri(_url), uri),
-                Method = HttpMethod.Get,
-                Headers = {
+                var queryString = request.ToQueryString();
+                var uri = path + "?" + queryString;
+                var httpRq = new HttpRequestMessage
+                {
+                    RequestUri = new Uri(new Uri(_url), uri),
+                    Method = HttpMethod.Get,
+                    Headers = {
                     { HttpRequestHeader.Authorization.ToString(), "Bearer " + _authenProvider.GetAccessToken().GetAwaiter().GetResult() },
                 },
-            };
-            var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
-            httpRs.EnsureSuccessStatusCode();
-            return JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                };
+                var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
+                httpRs.EnsureSuccessStatusCode();
+                return JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, ex.Message);
+                return default(TResponse);
+            }
+            
         }
         private async Task<TResponse> MakePostRequestAsync<TRequest, TResponse>(string path, TRequest request)
         {
@@ -147,33 +166,33 @@ namespace SSI.FCTrading.Client
 
         public SingleResponse<PpmmrAccountResponse> GetPpmmrAccount(PpmmrAccountRequest request)
         {
-            return MakePostRequest<PpmmrAccountRequest, SingleResponse<PpmmrAccountResponse>>(UrlConfigs.PPMMR_ACCOUNT, request);
+            return MakeGetRequest<PpmmrAccountRequest, SingleResponse<PpmmrAccountResponse>>(UrlConfigs.PPMMR_ACCOUNT, request);
         }
         public SingleResponse<StockPositionResponse> GetStockPosition(StockPositionRequest request)
         {
-            return MakePostRequest<StockPositionRequest, SingleResponse<StockPositionResponse>>(UrlConfigs.STOCK_POSITION, request);
+            return MakeGetRequest<StockPositionRequest, SingleResponse<StockPositionResponse>>(UrlConfigs.STOCK_POSITION, request);
         }
 
         public SingleResponse<DerivativePositionResponse> GetDerivativePosition(DerivativePositionRequest request)
         {
-            return MakePostRequest<DerivativePositionRequest, SingleResponse<DerivativePositionResponse>>(UrlConfigs.DERIV_POSITION, request);
+            return MakeGetRequest<DerivativePositionRequest, SingleResponse<DerivativePositionResponse>>(UrlConfigs.DERIV_POSITION, request);
         }
 
         public SingleResponse<MaxBuyQuantityAccountResponse> GetMaxBuyQuantity(MaxBuyQuantityAccountRequest request)
         {
-            return MakePostRequest<MaxBuyQuantityAccountRequest, SingleResponse<MaxBuyQuantityAccountResponse>>(UrlConfigs.MAX_BUY_QTY, request);
+            return MakeGetRequest<MaxBuyQuantityAccountRequest, SingleResponse<MaxBuyQuantityAccountResponse>>(UrlConfigs.MAX_BUY_QTY, request);
         }
 
 
         public SingleResponse<MaxSellQuantityResponse> GetMaxSellQuantity(MaxSellQuantityRequest request)
         {
-            return MakePostRequest<MaxSellQuantityRequest, SingleResponse<MaxSellQuantityResponse>>(UrlConfigs.MAX_SELL_QTY, request);
+            return MakeGetRequest<MaxSellQuantityRequest, SingleResponse<MaxSellQuantityResponse>>(UrlConfigs.MAX_SELL_QTY, request);
         }
 
 
         public SingleResponse<OrderHistoryAccountResponse> GetAccountOrderHistory(OrderHistoryAccountRequest order)
         {
-            return MakePostRequest<OrderHistoryAccountRequest, SingleResponse<OrderHistoryAccountResponse>>(UrlConfigs.ORDER_HISTORY, order);
+            return MakeGetRequest<OrderHistoryAccountRequest, SingleResponse<OrderHistoryAccountResponse>>(UrlConfigs.ORDER_HISTORY, order);
         }
 
 

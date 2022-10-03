@@ -8,8 +8,8 @@ namespace SSI.FCTrading.Client.Models.Request
 {
     public class MaxSellQuantityRequest
     {
-        public string Account { get; set; }
-        public string InstrumentID { get; set; }
-        public decimal Price { get; set; }
+        public string account { get; set; }
+        public string instrumentID { get; set; }
+        public decimal price { get; set; }
     }
 }

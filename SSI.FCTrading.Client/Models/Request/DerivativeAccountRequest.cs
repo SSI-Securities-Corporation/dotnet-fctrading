@@ -8,7 +8,7 @@ namespace SSI.FCTrading.Client.Models.Request
 {
     public class DerivativeAccountRequest
     {
-        public string Account { get; set; }
+        public string account { get; set; }
 
     }
    
