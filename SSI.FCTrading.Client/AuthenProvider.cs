@@ -23,8 +23,8 @@ namespace SSI.FCTrading.Client
         string _code;
         bool _saveCode;
         private readonly ILogger _logger;
-        private string _accessToken;
-        private long _tokenTime = 0;
+        private static string _accessToken;
+        private static long _tokenTime = 0;
         private string _privateKey;
         private SecurityKey _securityKey;
         private TwoFactorType _twoFactorType;
@@ -135,7 +135,7 @@ namespace SSI.FCTrading.Client
             {
                 var datetimeNow = (long)DateTime.Now.ToUniversalTime().Subtract(
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                ).TotalMilliseconds;
+                ).TotalSeconds;
                 var timeSpanNumber = _tokenTime - datetimeNow;
                 if (timeSpanNumber <= 0) return false;
 
