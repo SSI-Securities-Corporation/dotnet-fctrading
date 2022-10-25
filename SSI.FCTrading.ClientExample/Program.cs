@@ -27,21 +27,21 @@ namespace SSI.FCTrading.ClientExample
             bool isExit = false;
             while (!isExit)
             {
-                logger.Information("Choice:");
-                logger.Information("1. Get OTP");
-                logger.Information("2. Stream FcTradding");
-                logger.Information("3. New Order");
-                logger.Information("4. Cancel Order");
-                logger.Information("5. Modify Order");
-                logger.Information("6. Get Cash Account Balance");
-                logger.Information("7. Get Derivative account balance");
-                logger.Information("8. Get purchasing power margin of account");
-                logger.Information("9. Get stock position.");
-                logger.Information("10. Get derivative position.");
-                logger.Information("11. Get max buy quantity (buy power).");
-                logger.Information("12. Get max sell quantity (sell power).");
-                logger.Information("13. Get account order history");
-                logger.Information("14. Exit");
+                Console.WriteLine("Choice:");
+                Console.WriteLine("1. Get OTP");
+                Console.WriteLine("2. Stream FcTradding");
+                Console.WriteLine("3. New Order");
+                Console.WriteLine("4. Cancel Order");
+                Console.WriteLine("5. Modify Order");
+                Console.WriteLine("6. Get Cash Account Balance");
+                Console.WriteLine("7. Get Derivative account balance");
+                Console.WriteLine("8. Get purchasing power margin of account");
+                Console.WriteLine("9. Get stock position.");
+                Console.WriteLine("10. Get derivative position.");
+                Console.WriteLine("11. Get max buy quantity (buy power).");
+                Console.WriteLine("12. Get max sell quantity (sell power).");
+                Console.WriteLine("13. Get account order history");
+                Console.WriteLine("14. Exit");
                 var command = Console.ReadLine();
                 switch (command)
                 {

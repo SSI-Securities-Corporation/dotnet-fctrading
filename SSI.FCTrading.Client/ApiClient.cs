@@ -60,8 +60,34 @@ namespace SSI.FCTrading.Client
                 _logger.Error(ex, ex.Message);
                 return default(TResponse);
             }
-          
         }
+
+        private TResponse PostOTPRequest<TRequest, TResponse>(string path, TRequest request)
+        {
+            try
+            {
+                var data = JsonConvert.SerializeObject(request);
+                var postJsonItem = new StringContent(data, Encoding.UTF8, "application/json");
+
+                var httpRq = new HttpRequestMessage
+                {
+                    RequestUri = new Uri(new Uri(_url), path),
+                    Method = HttpMethod.Post,
+                    Content = postJsonItem
+                };
+                var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
+                httpRs.EnsureSuccessStatusCode();
+
+                var result = JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, ex.Message);
+                return default(TResponse);
+            }
+        }
+
         private TResponse MakeGetRequest<TRequest, TResponse>(string path, TRequest request)
         {
             try
@@ -151,7 +177,7 @@ namespace SSI.FCTrading.Client
 
         public SingleResponse<OTPResponse> GetOTP(OTPRequest otpRequest)
         {
-            return MakePostRequest<OTPRequest, SingleResponse<OTPResponse>>(UrlConfigs.GET_OTP, otpRequest);
+            return PostOTPRequest<OTPRequest, SingleResponse<OTPResponse>>(UrlConfigs.GET_OTP, otpRequest);
         }
 
         public SingleResponse<ModifyOrderResponse> ModifyOrder(ModifyOrderRequest order)
