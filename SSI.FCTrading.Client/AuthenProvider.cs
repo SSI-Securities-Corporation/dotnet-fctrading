@@ -23,12 +23,11 @@ namespace SSI.FCTrading.Client
         string _code;
         bool _saveCode;
         private readonly ILogger _logger;
-        private static string _accessToken;
         private static long _tokenTime = 0;
         private string _privateKey;
         private SecurityKey _securityKey;
         private TwoFactorType _twoFactorType;
-        public AuthenProvider(string url, string consumerId, string consumerSecret, string code,string privateKey,
+        public AuthenProvider(string url, string consumerId, string consumerSecret, string code, string privateKey,
                               bool saveCode = true, TwoFactorType twoFactorType = TwoFactorType.PIN, ILogger logger = null)
         {
             _logger = logger;
@@ -61,13 +60,13 @@ namespace SSI.FCTrading.Client
         }
         public string Sign(string data)
         {
-            
+
             try
             {
                 var signatureProvider = _securityKey.CryptoProviderFactory.CreateForSigning(_securityKey, "RS256", true);
                 if (signatureProvider == null)
                     throw new InvalidOperationException("signatureProvider is null when generate signature");
-                byte[] sig =  signatureProvider.Sign(Encoding.UTF8.GetBytes(data));
+                byte[] sig = signatureProvider.Sign(Encoding.UTF8.GetBytes(data));
 
                 return Extentions.ByteArrayToString(sig);
             }
@@ -75,32 +74,28 @@ namespace SSI.FCTrading.Client
             {
                 throw new ArgumentException("Signature need format with hexadecimal string");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
         public async Task<string> GetAccessToken()
         {
-            if (!CheckTokenLifeTime())
+            try
             {
-                try
-                {
-                    _accessToken = await  TakeAccessToken();
-                    var handler = new JwtSecurityTokenHandler();
-                    var jsonToken = handler.ReadToken(_accessToken);
-                    var tokenS = jsonToken as JwtSecurityToken;
-                    var exp = tokenS.Claims.First(claim => claim.Type == "exp").Value;
-                    _tokenTime = long.Parse(exp);
-                    return _accessToken;
-                }
-                catch (Exception ex)
-                {
-                    _logger?.Error(ex, "Failed to get access token");
-                    throw ex;
-                }
+                var _accessToken = await TakeAccessToken();
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(_accessToken);
+                var tokenS = jsonToken as JwtSecurityToken;
+                var exp = tokenS.Claims.First(claim => claim.Type == "exp").Value;
+                _tokenTime = long.Parse(exp);
+                return _accessToken;
             }
-            return _accessToken;
+            catch (Exception ex)
+            {
+                _logger?.Error(ex, "Failed to get access token");
+                throw ex;
+            }
 
         }
         private async Task<string> TakeAccessToken()
