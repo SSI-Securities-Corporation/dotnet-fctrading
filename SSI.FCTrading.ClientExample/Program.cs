@@ -29,75 +29,82 @@ namespace SSI.FCTrading.ClientExample
             {
                 Console.WriteLine("Choice:");
                 Console.WriteLine("1. Get OTP");
-                Console.WriteLine("2. Stream FcTradding");
-                Console.WriteLine("3. New Order");
-                Console.WriteLine("4. Cancel Order");
-                Console.WriteLine("5. Modify Order");
-                Console.WriteLine("6. Get Cash Account Balance");
-                Console.WriteLine("7. Get Derivative account balance");
-                Console.WriteLine("8. Get purchasing power margin of account");
-                Console.WriteLine("9. Get stock position.");
-                Console.WriteLine("10. Get derivative position.");
-                Console.WriteLine("11. Get max buy quantity (buy power).");
-                Console.WriteLine("12. Get max sell quantity (sell power).");
-                Console.WriteLine("13. Get account order history");
-                Console.WriteLine("14. Exit");
+
+                Console.WriteLine("2. Get and set Access token");
+
+                Console.WriteLine("3. Stream FcTradding");
+                Console.WriteLine("4. New Order");
+                Console.WriteLine("5. Cancel Order");
+                Console.WriteLine("6. Modify Order");
+                Console.WriteLine("7. Get Cash Account Balance");
+                Console.WriteLine("8. Get Derivative account balance");
+                Console.WriteLine("9. Get purchasing power margin of account");
+                Console.WriteLine("10. Get stock position.");
+                Console.WriteLine("11. Get derivative position.");
+                Console.WriteLine("12. Get max buy quantity (buy power).");
+                Console.WriteLine("13. Get max sell quantity (sell power).");
+                Console.WriteLine("14. Get account order history");
+                Console.WriteLine("15. Exit");
                 var command = Console.ReadLine();
                 switch (command)
                 {
+
                     case "1":
                         GetOTP(logger);
                         break;
-
                     case "2":
-                        GetStreamData(logger);
+                        SaveAccessToken(logger);
                         break;
 
                     case "3":
-                        NewOrder(logger);
+                        GetStreamData(logger);
                         break;
 
                     case "4":
-                        CancelOrder(logger);
+                        NewOrder(logger);
                         break;
 
                     case "5":
-                        ModifyOrder(logger);
+                        CancelOrder(logger);
                         break;
 
                     case "6":
-                        GetCashAccountBalance(logger);
+                        ModifyOrder(logger);
                         break;
 
                     case "7":
-                        GetDerivativeAccountBalance(logger);
+                        GetCashAccountBalance(logger);
                         break;
 
                     case "8":
-                        GetPpmmrAccount(logger);
+                        GetDerivativeAccountBalance(logger);
                         break;
 
                     case "9":
-                        GetStockPosition(logger);
+                        GetPpmmrAccount(logger);
                         break;
 
                     case "10":
-                        GetDerivativePosition(logger);
+                        GetStockPosition(logger);
                         break;
 
                     case "11":
-                        GetMaxBuyQuantity(logger);
+                        GetDerivativePosition(logger);
                         break;
 
                     case "12":
-                        GetMaxSellQuantity(logger);
+                        GetMaxBuyQuantity(logger);
                         break;
 
                     case "13":
-                        GetAccountOrderHistory(logger);
+                        GetMaxSellQuantity(logger);
                         break;
 
                     case "14":
+                        GetAccountOrderHistory(logger);
+                        break;
+
+                    case "15":
                         isExit = true;
                         break;
 
@@ -115,6 +122,7 @@ namespace SSI.FCTrading.ClientExample
         {
             var client = ReadParamConfig(logger);
             var request = Wapper<NewOrderRequest>(client, logger);
+            request.requestID = new Random().Next(0, 9999999).ToString();
             logger.Information(JsonConvert.SerializeObject(client.NewOrder(request)));
         }
 
@@ -143,11 +151,21 @@ namespace SSI.FCTrading.ClientExample
                 ConsumerSecret = configuration["ConsumerSecret"],
             })));
         }
+        private static void SaveAccessToken(ILogger logger)
+        {
+            Enum.TryParse(configuration["TwoFactorType"], out TwoFactorType twoFactorType);
+            var authenProvider = new AuthenProvider(configuration["URL"], configuration["ConsumerID"], configuration["ConsumerSecret"], configuration["Code"],
+                                                    configuration["PrivateKey"], bool.Parse(configuration["IsSave"]), twoFactorType, logger);
+            var token = authenProvider.GetAccessToken(true).Result;
+            logger.Information("Get Token Success:" + JsonConvert.SerializeObject(token));
+        }
+        
 
         private static void CancelOrder(ILogger logger)
         {
             var client = ReadParamConfig(logger);
             var request = Wapper<CancelOrderRequest>(client, logger);
+            request.RequestID = new Random().Next(0, 9999999).ToString();
             logger.Information(JsonConvert.SerializeObject(client.CancelOrder(request)));
         }
 
@@ -155,6 +173,7 @@ namespace SSI.FCTrading.ClientExample
         {
             var client = ReadParamConfig(logger);
             var request = Wapper<ModifyOrderRequest>(client, logger);
+            request.RequestID = new Random().Next(0, 9999999).ToString();
             logger.Information(JsonConvert.SerializeObject(client.ModifyOrder(request)));
         }
 
