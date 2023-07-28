@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+**/.vs
+**/obj
+**/bin
+*.pyc
+**/packages
+*.user
+**/node_modules
+**/env
+**/.idea
+/Source/SSI.TradingAPI.Client/PythonClient/ssi_tapi.egg-info
+/Source/SSI.TradingAPI.Client/PythonClient/dist
+/Source/SSI.TradingAPI.Client/PythonClient/build/lib/tapi_client
+/Source/SSI.TradingAPI.Client/PythonClient/ssi_fctrading.egg-info
