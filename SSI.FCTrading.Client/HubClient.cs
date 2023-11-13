@@ -106,7 +106,7 @@ namespace SSI.FCTrading.Client
         }
         public async Task Start(CancellationToken cancellationToken = default)
         {
-            var accessToken = await _authenticationProvider.GetAccessToken();
+            var accessToken = await _authenticationProvider.GetAccessToken(true);
             CreateHubClient(accessToken, _notifyId, cancellationToken);
             await _hubConnection.Start(new WebSocketTransport());
         }

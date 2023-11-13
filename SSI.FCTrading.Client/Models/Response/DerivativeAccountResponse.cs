@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SSI.FCTrading.Client.Models.Response
 {
-    public class DerivativeAccountResponse
-    {
-        public string message { get; set; }
-        public int status { get; set; }
-        public DerivativeDataAccount data { get; set; }
-    }
+    //public class DerivativeAccountResponse
+    //{
+    //    public string message { get; set; }
+    //    public int status { get; set; }
+    //    public DerivativeDataAccount data { get; set; }
+    //}
 
-    public class DerivativeDataAccount
+    public class DerivativeAccountResponse
     {
         public string account { get; set; }
         public decimal accountBalance { get; set; }

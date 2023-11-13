@@ -15,6 +15,10 @@ namespace SSI.FCTrading.Client
         public const string CANCEL_ORDER = "/api/v2/Trading/CancelOrder";
         public const string MODIFY_ORDER = "/api/v2/Trading/ModifyOrder";
 
+        public const string DER_NEW_ORDER = "/api/v2/Trading/derNewOrder";
+        public const string DER_CANCEL_ORDER = "/api/v2/Trading/derCancelOrder";
+        public const string DER_MODIFY_ORDER = "/api/v2/Trading/derModifyOrder";
+
         public const string GET_CASH_ACCOUNT_BALANCE = "/api/v2/Trading/cashAcctBal";
         public const string DERIV_ACCTBAL = "/api/v2/Trading/derivAcctBal";
         public const string PPMMR_ACCOUNT = "/api/v2/Trading/ppmmraccount";
@@ -23,5 +27,7 @@ namespace SSI.FCTrading.Client
         public const string MAX_BUY_QTY = "/api/v2/Trading/maxBuyQty";
         public const string MAX_SELL_QTY = "/api/v2/Trading/maxSellQty";
         public const string ORDER_HISTORY = "/api/v2/Trading/orderHistory";
+        public const string ORDER_BOOK = "/api/v2/Trading/orderBook";
+        public const string AUDIT_ORDER_BOOK = "/api/v2/Trading/auditOrderBook";
     }
 }

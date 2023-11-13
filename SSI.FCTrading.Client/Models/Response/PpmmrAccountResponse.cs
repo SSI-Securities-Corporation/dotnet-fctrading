@@ -6,56 +6,56 @@ using System.Threading.Tasks;
 
 namespace SSI.FCTrading.Client.Models.Response
 {
-    public class PpmmrAccountData
-    {
-        public int collateralAsset { get; set; }
-        public int callLMW { get; set; }
-        public int liability { get; set; }
-        public int eeOrigin { get; set; }
-        public int forceLMV { get; set; }
-        public int equity { get; set; }
-        public int ee { get; set; }
-        public int callMargin { get; set; }
-        public int cashBalance { get; set; }
-        public int purchasingPower { get; set; }
-        public int callForcesell { get; set; }
-        public int lmv { get; set; }
-        public int marginCall { get; set; }
-        public int withdrawal { get; set; }
-        public int collateralA { get; set; }
-        public string action { get; set; }
-        public int marginRatio { get; set; }
-        public int debt { get; set; }
-        public int accruedInterest { get; set; }
-        public int holdRight { get; set; }
-        public int preLoan { get; set; }
-        public int fees { get; set; }
-        public int buyUnmatch { get; set; }
-        public int ap { get; set; }
-        public int apT1 { get; set; }
-        public int sellUnmatch { get; set; }
-        public int cia { get; set; }
-        public int ar { get; set; }
-        public int arT1 { get; set; }
-        public int ppCredit { get; set; }
-        public int creditLimit { get; set; }
-        public int totalAssets { get; set; }
-        public int marginCallLMVSold { get; set; }
-        public int lmvNonMarginable { get; set; }
-        public int eeCredit { get; set; }
-        public int totalEquity { get; set; }
-        public int eE90 { get; set; }
-        public int eE80 { get; set; }
-        public int eE70 { get; set; }
-        public int eE60 { get; set; }
-        public int eE50 { get; set; }
-    }
-
     public class PpmmrAccountResponse
     {
-        public string message { get; set; }
-        public int status { get; set; }
-        public PpmmrAccountData data { get; set; }
+        public long collateralAsset { get; set; }
+        public long callLMW { get; set; }
+        public long liability { get; set; }
+        public long eeOrigin { get; set; }
+        public long forceLMV { get; set; }
+        public long equity { get; set; }
+        public long ee { get; set; }
+        public long callMargin { get; set; }
+        public long cashBalance { get; set; }
+        public long purchasingPower { get; set; }
+        public long callForcesell { get; set; }
+        public long lmv { get; set; }
+        public long marginCall { get; set; }
+        public long withdrawal { get; set; }
+        public long collateralA { get; set; }
+        public string action { get; set; }
+        public long marginRatio { get; set; }
+        public long debt { get; set; }
+        public long accruedlongerest { get; set; }
+        public long holdRight { get; set; }
+        public long preLoan { get; set; }
+        public long fees { get; set; }
+        public long buyUnmatch { get; set; }
+        public long ap { get; set; }
+        public long apT1 { get; set; }
+        public long sellUnmatch { get; set; }
+        public long cia { get; set; }
+        public long ar { get; set; }
+        public long arT1 { get; set; }
+        public long ppCredit { get; set; }
+        public long creditLimit { get; set; }
+        public long totalAssets { get; set; }
+        public long marginCallLMVSold { get; set; }
+        public long lmvNonMarginable { get; set; }
+        public long eeCredit { get; set; }
+        public long totalEquity { get; set; }
+        public long eE90 { get; set; }
+        public long eE80 { get; set; }
+        public long eE70 { get; set; }
+        public long eE60 { get; set; }
+        public long eE50 { get; set; }
     }
+
+    //public class PpmmrAccountResponse
+    //{
+    //    public string message { get; set; }
+    //    public long status { get; set; }
+    //    public PpmmrAccountData data { get; set; }
+    //}
 
 }
