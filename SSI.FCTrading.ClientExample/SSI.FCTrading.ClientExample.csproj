@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
@@ -14,20 +10,14 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.NewtonsoftJson" Version="5.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.17.0" />
     <PackageReference Include="Microsoft.IdentityModel.Logging" Version="6.17.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.17.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Serilog" Version="2.11.1-dev-01397" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
   </ItemGroup>

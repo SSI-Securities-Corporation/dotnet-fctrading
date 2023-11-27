@@ -75,9 +75,9 @@ namespace SSI.FCTrading.Client
             {
                 throw new ArgumentException("Signature need format with hexadecimal string");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public async Task<string> GetAccessToken(bool reloadToken = false)
@@ -102,7 +102,7 @@ namespace SSI.FCTrading.Client
                 catch (Exception ex)
                 {
                     _logger?.Error(ex, "Failed to get access token");
-                    throw ex;
+                    throw;
                 }
             }
             return _accessToken;
