@@ -39,8 +39,8 @@ jobs:
  
       - name: Run publish
         run: |
-          dotnet publish -c Release -o out-linux64 -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_published }}
-          dotnet publish -c Release -o out-win64 -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_published }}
+          dotnet publish -c Release -o out-linux64 -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish -c Release -o out-win64 -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
  
  
       - name: ZIP my-project directory
