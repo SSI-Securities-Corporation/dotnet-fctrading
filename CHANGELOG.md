@@ -1,5 +1,18 @@
 # FastConnect Trading dotNet client Changelog
 
+# [2.0.0](https://github.com/SSI-Securities-Corporation/dotnet-fctrading/compare/v1.0.0...v2.0.0) (2023-11-27)
+
+
+### Documentation
+
+* remove template readme ([33bc491](https://github.com/SSI-Securities-Corporation/dotnet-fctrading/commit/33bc491733644b62d87e8fc82f4d935b2ba1b23f))
+
+
+### BREAKING CHANGES
+
+* - remove support .net core 5.0
+- remove protobuf protocol
+
 # 1.0.0 (2023-11-27)
 
 
