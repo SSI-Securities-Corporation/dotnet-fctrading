@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,21 @@ namespace SSI.FCTrading.Client
             var result = deserialized.Select((kvp) => kvp.Key.ToString() + "=" + Uri.EscapeDataString(kvp.Value)).Aggregate((p1, p2) => p1 + "&" + p2);
             return result;
         }
+        public static string GetMACAddress()
+        {
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                    return AddressBytesToString(nic.GetPhysicalAddress().GetAddressBytes());
+            }
 
+            return string.Empty;
+        }
+
+        public static string AddressBytesToString(byte[] addressBytes)
+        {
+            return string.Join("-", (from b in addressBytes
+                                     select b.ToString("X2")).ToArray());
+        }
     }
 }

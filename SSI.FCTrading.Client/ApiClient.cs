@@ -104,6 +104,7 @@ namespace SSI.FCTrading.Client
                 };
                 var httpRs = _httpClient.SendAsync(httpRq).GetAwaiter().GetResult();
                 httpRs.EnsureSuccessStatusCode();
+                //var a = JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
                 return JsonConvert.DeserializeObject<TResponse>(httpRs.Content.ReadAsStringAsync().GetAwaiter().GetResult());
             }
             catch (Exception ex)
@@ -155,6 +156,10 @@ namespace SSI.FCTrading.Client
         {
             return MakePostRequest<NewOrderRequest, SingleResponse<NewOrderResponse>>(UrlConfigs.NEW_ORDER, order);
         }
+        public SingleResponse<NewOrderResponse> DerNewOrder(DerNewOrderRequest order)
+        {
+            return MakePostRequest<DerNewOrderRequest, SingleResponse<NewOrderResponse>>(UrlConfigs.DER_NEW_ORDER, order);
+        }
         public SingleResponse<CashAccountBalanceResponse> GetCashAccountBalance(CashAccountBalanceRequest req)
         {
             return MakeGetRequest<CashAccountBalanceRequest, SingleResponse<CashAccountBalanceResponse>>(UrlConfigs.GET_CASH_ACCOUNT_BALANCE, req);
@@ -175,6 +180,11 @@ namespace SSI.FCTrading.Client
             return MakePostRequest<CancelOrderRequest, SingleResponse<CancelOrderResponse>>(UrlConfigs.CANCEL_ORDER, order);
         }
 
+        public SingleResponse<CancelOrderResponse> DerCancelOrder(DerCancelOrderRequest order)
+        {
+            return MakePostRequest<DerCancelOrderRequest, SingleResponse<CancelOrderResponse>>(UrlConfigs.DER_CANCEL_ORDER, order);
+        }
+
         public SingleResponse<OTPResponse> GetOTP(OTPRequest otpRequest)
         {
             return PostOTPRequest<OTPRequest, SingleResponse<OTPResponse>>(UrlConfigs.GET_OTP, otpRequest);
@@ -183,6 +193,11 @@ namespace SSI.FCTrading.Client
         public SingleResponse<ModifyOrderResponse> ModifyOrder(ModifyOrderRequest order)
         {
             return MakePostRequest<ModifyOrderRequest, SingleResponse<ModifyOrderResponse>>(UrlConfigs.MODIFY_ORDER, order);
+        }
+
+        public SingleResponse<ModifyOrderResponse> DerModifyOrder(DerModifyOrderRequest order)
+        {
+            return MakePostRequest<DerModifyOrderRequest, SingleResponse<ModifyOrderResponse>>(UrlConfigs.DER_MODIFY_ORDER, order);
         }
 
         public SingleResponse<DerivativeAccountResponse> GetDerivativeAccountBalance(DerivativeAccountRequest request)
@@ -219,6 +234,16 @@ namespace SSI.FCTrading.Client
         public SingleResponse<OrderHistoryAccountResponse> GetAccountOrderHistory(OrderHistoryAccountRequest order)
         {
             return MakeGetRequest<OrderHistoryAccountRequest, SingleResponse<OrderHistoryAccountResponse>>(UrlConfigs.ORDER_HISTORY, order);
+        }
+
+        public SingleResponse<OrderBookResponse> GetOrderBook(OrderBookRequest order)
+        {
+            return MakeGetRequest<OrderBookRequest, SingleResponse<OrderBookResponse>>(UrlConfigs.ORDER_BOOK, order);
+        }
+
+        public SingleResponse<AuditOrderBookResponse> GetAuditOrderBook(AuditOrderBookRequest order)
+        {
+            return MakeGetRequest<AuditOrderBookRequest, SingleResponse<AuditOrderBookResponse>>(UrlConfigs.AUDIT_ORDER_BOOK, order);
         }
 
 

@@ -8,23 +8,51 @@ namespace SSI.FCTrading.Client.Models
 {
     public class NewOrderRequest
     {
-        public string instrumentID { get; set; }
-        public string market { get; set; }
-        public string buySell { get; set; }
-        public string orderType { get; set; }
-        public string channelID { get; set; }
-        public double price { get; set; }
-        public long quantity { get; set; }
-        public string account { get; set; }
-        public string requestID { get; set; }
-        public bool stopOrder { get; set; }
-        public double stopPrice { get; set; }
-        public string stopType { get; set; }
-        public double stopStep { get; set; }
-        public double lossStep { get; set; }
-        public double profitStep { get; set; }
-        public string code { get; set; }
-        public bool modifiable { get; set; }
+        public string instrumentID;
+        public string market;
+        public string buySell;
+        public string orderType;
+        public string channelID;
+        public double price;
+        public int quantity;
+        public string account;
+        public string requestID;
+        public bool stopOrder = false;
+        public double stopPrice;
+        public string stopType;
+        public double stopStep;
+        public double lossStep;
+        public double profitStep;
+        public string code;
+        public bool modifiable = true;
+
+        public string deviceId;
+        public string userAgent;
+
+    }
+
+    public class DerNewOrderRequest
+    {
+        public string instrumentID;
+        public string market;
+        public string buySell;
+        public string orderType;
+        public string channelID;
+        public double price;
+        public int quantity;
+        public string account;
+        public string requestID;
+        public bool stopOrder = false;
+        public double stopPrice;
+        public string stopType;
+        public double stopStep;
+        public double lossStep;
+        public double profitStep;
+        public string code;
+        public bool modifiable = true;
+
+        public string deviceId;
+        public string userAgent;
 
     }
 }

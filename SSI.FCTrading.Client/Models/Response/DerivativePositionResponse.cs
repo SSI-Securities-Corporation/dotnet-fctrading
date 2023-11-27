@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SSI.FCTrading.Client.Models.Response
 {
-    public class DerivativePositionResponse
-    {
-        public string message { get; set; }
-        public int status { get; set; }
-        public DerivativePositionData data { get; set; }
-    }
+    //public class DerivativePositionResponse
+    //{
+    //    public string message { get; set; }
+    //    public int status { get; set; }
+    //    public DerivativePositionData data { get; set; }
+    //}
 
     public class ClosePosition
     {
@@ -28,7 +28,7 @@ namespace SSI.FCTrading.Client.Models.Response
         public int tradingPL { get; set; }
     }
 
-    public class DerivativePositionData
+    public class DerivativePositionResponse
     {
         public string account { get; set; }
         public List<OpenPosition> openPosition { get; set; }
