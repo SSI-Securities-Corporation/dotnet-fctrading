@@ -39,11 +39,9 @@ jobs:
  
       - name: Run publish
         run: |
-          dotnet publish -c Release -o out-linux64 -r linux-x64 --self-contained true /p:UseAppHost=true
-          dotnet publish -c Release -o out-win64 -r win-x64 --self-contained true /p:UseAppHost=true
+          dotnet publish -c Release -o out-linux64 -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_published }}
+          dotnet publish -c Release -o out-win64 -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_published }}
  
-      - name: Rename publish directory of MyProject to my-project and move it to root
-        run: mv ./SolutionDir/MyProject/bin/Debug/net6.0 ./my-project
  
       - name: ZIP my-project directory
         run: |
