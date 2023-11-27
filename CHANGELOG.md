@@ -1,5 +1,12 @@
 # FastConnect Trading dotNet client Changelog
 
+# [2.1.0](https://github.com/SSI-Securities-Corporation/dotnet-fctrading/compare/v2.0.0...v2.1.0) (2023-11-27)
+
+
+### Features
+
+* add sample data json to release ([01d36a9](https://github.com/SSI-Securities-Corporation/dotnet-fctrading/commit/01d36a96f5fd268900bdde8dc069a8c469fbd795))
+
 # [2.0.0](https://github.com/SSI-Securities-Corporation/dotnet-fctrading/compare/v1.0.0...v2.0.0) (2023-11-27)
 
 
