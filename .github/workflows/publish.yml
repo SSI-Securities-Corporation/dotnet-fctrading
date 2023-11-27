@@ -40,20 +40,20 @@ jobs:
       - name: Run publish SSI.FCTrading.Client
         run: |
           cd SSI.FCTrading.Client
-          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../out-linux64/SSI.FCTrading.Client -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
-          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../out-win64/SSI.FCTrading.Client -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../fc-trading-linux.net/SSI.FCTrading.Client -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../fc-trading.net/SSI.FCTrading.Client -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
       - name: Run publish SSI.FCTrading.ClientExample
         run: |
           cd SSI.FCTrading.ClientExample
-          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../out-linux64/SSI.FCTrading.ClientExample -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
-          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../out-win64/SSI.FCTrading.ClientExample -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../fc-trading-linux.net/SSI.FCTrading.ClientExample -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../fc-trading.net/SSI.FCTrading.ClientExample -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
  
  
       - name: ZIP my-project directory
         run: |
           mkdir target
-          zip -r target/win64.zip out-win64
-          zip -r target/linux64.zip out-linux64
+          zip -r target/fc-trading-win64.net.zip fc-trading.net
+          zip -r target/fc-trading-linux64.net.zip fc-trading-linux.net
  
       - name: Semantic Release
         if: steps.semantic.outputs.new_release_published == 'true'
