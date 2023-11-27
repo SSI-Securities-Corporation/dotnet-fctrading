@@ -37,14 +37,21 @@ jobs:
       - name: Run build
         run: dotnet build ./  --configuration Release --no-restore
  
-      - name: Run publish
+      - name: Run publish SSI.FCTrading.Client
         run: |
-          dotnet publish -c Release -o out-linux64 -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
-          dotnet publish -c Release -o out-win64 -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          cd SSI.FCTrading.Client
+          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../out-linux64/SSI.FCTrading.Client -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.Client.csproj -c Release -o ../out-win64/SSI.FCTrading.Client -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+      - name: Run publish SSI.FCTrading.ClientExample
+        run: |
+          cd SSI.FCTrading.ClientExample
+          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../out-linux64/SSI.FCTrading.ClientExample -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
+          dotnet publish SSI.FCTrading.ClientExample.csproj -c Release -o ../out-win64/SSI.FCTrading.ClientExample -r win-x64 --self-contained true /p:UseAppHost=true /p:Version=${{ steps.semantic.outputs.new_release_version  }}
  
  
       - name: ZIP my-project directory
         run: |
+          mkdir target
           zip -r target/win64.zip out-win64
           zip -r target/linux64.zip out-linux64
  
